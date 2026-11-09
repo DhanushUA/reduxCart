@@ -1,8 +1,11 @@
 // import React from 'react'
 import { Link } from "react-router-dom"
+import Header from "../components/Header"
 
 function Cart() {
   return (
+    <>
+ <Header />
     <div className='container my-5'>
       <h1 className="pt-5 text-primary fw-bold">user's cart</h1>
       <div className='row'>
@@ -10,6 +13,7 @@ function Cart() {
         <table className='table'>
           <thead>
             <tr>
+              <th>#</th>
                <th>product</th>
                 <th> image</th>
                  <th>quantity</th>
@@ -19,19 +23,18 @@ function Cart() {
           </thead>
           <tbody>
             <tr>
-             <td></td>
+              <td>1</td>
+             <td> Hand Bag</td>
              <td>  <img width={'50px'} height={'50px'} src="https://external-cdn.morphic.com/website-production/assets/seo/images/seo/28th%20may%20batch%202/e-commerce-product-photo-images/e-commerce-product-photo-images-3x4-01.webp?tr=w-448,q-80" alt="product"></img> </td>
              <td>
                <div className='d-flex'>
                  <button className='btn fs-1'>-</button>
-                 <input style={{width:'40px'}} value={10}  type="text" className="form-control"></input>
+                 <input style={{width:'40px'}} value={10}  type="text" className="form-control" readOnly/>
                  <button className='btn fs-1'>+</button>
-
                </div>
              </td>
              <td>$ </td>
              <td> </td>
-
             </tr>
           </tbody>
         </table>
@@ -44,11 +47,13 @@ function Cart() {
           <div className="border shadow rounded">
             <h3>  total Amount :   <span className="text-danger"> $ 300</span> </h3>
             <hr/>
-            <button className="btn btn-success w-25"> CHECKOUT</button>
+            <button className="btn btn-success w-75"> CHECKOUT</button>
           </div>
         </div>
       </div>
     </div>
+    </>
+
   )
 }
 

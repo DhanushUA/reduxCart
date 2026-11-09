@@ -1,10 +1,20 @@
 // import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Header from "../components/Header";
 
 function View() {
+
+  const {id} = useParams();
+  console.log(id)
+   const {allProducts} = useSelector(state=>state.productReducer)
+   console.log(allProducts)
   return (
-    <div className='container my-5'>
+    <>
+    <Header />
+     <div className='container my-5 pt-5'>
       <div style={{ height:'80vh'}} className='row align-items-center'>
        <div className='col-lg-6'>
         <img src="https://sb.kaleidousercontent.com/67418/1920x1100/0135fd63fd/transparent-boots.png" alt="product" className='img-fluid' ></img>
@@ -19,13 +29,15 @@ function View() {
         <h4 className="fw-bold">Category :</h4>
         <h4 className="fw-bold">Description</h4>
         <h5 className="fw-bold"> Client Reviews </h5>
-        <div className='border rounded shadow'>
+        <div className='border rounded p-2 shadow my-5'>
           <p> <span className="fw-bolder"> Name: </span> message </p>
           <p> Rating: 5  <FontAwesomeIcon icon={faStar} style={{color: "rgb(255, 212, 59)",}} className="text-warning" />   </p>
         </div>
       </div>
     </div>
     </div>
+    </>
+
   )
 }
 
