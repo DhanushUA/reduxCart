@@ -8,10 +8,12 @@ import Badge from 'react-bootstrap/Badge';
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTruckFast } from '@fortawesome/free-solid-svg-icons';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { serachProduct } from '../redux/silces/productSilce';
 
+
 function Header({ insideProduct }) {
+  const userWishlist = useSelector(state=>state.WishlistReducer)
   const dispatch = useDispatch();
 
   return (
@@ -37,7 +39,7 @@ function Header({ insideProduct }) {
             }
 
             <Link to={'/wishlist'} className="text-light text-decoration-none fw-bold ms-5">
-              <FontAwesomeIcon icon={faHeart} className='btn btn-danger ' /> Wishlist <Badge bg="secondary">10</Badge>
+              <FontAwesomeIcon icon={faHeart} className='btn btn-danger ' />  <Badge bg="secondary">{userWishlist?.length}</Badge>
             </Link>
             <Link to={'/cart'} className="text-light text-decoration-none fw-bold ms-5">
               <FontAwesomeIcon icon={faCartPlus} className='btn btn-success me-2' /> Cart <Badge pill bg="secondary">10</Badge>
