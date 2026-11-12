@@ -8,11 +8,13 @@ import { useEffect } from "react";
 import { getAllproducts } from "../redux/silces/productSilce";
 import Swal from "sweetalert2";
 import { addToWishlist } from "../redux/silces/wishlistSlice";
+import { addCart } from "../redux/silces/cartSlice";
 
 function View() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const userWishlist =useSelector(state=>state.WishlistReducer)
+  const userCart = useSelector(state=>state.CartReducer)
   const { loading, allproducts, error } = useSelector(
     (state) => state.productReducer
   );
@@ -33,10 +35,23 @@ function View() {
         icon:"error",
         confirmButtonText:"ok"
       })
+
     }else{
       dispatch(addToWishlist(product))
     }
   }
+
+    const handleCart = () =>{
+    const existingItem = userCart?.find(item=>item.id==product?.id)
+    dispatch(addCart(product))
+      Swal.fire({
+        title:"success",
+        text: existingItem ? `${existingItem.title} quqntity increment  ` : "product added in your wishlist",
+        icon:"success",
+        confirmButtonText:"ok"
+      })
+    }
+
 
   return (
     <>
@@ -52,7 +67,7 @@ function View() {
               <img src={product.thumbnail} alt={product.title} className="img-fluid" />
               <div className="d-flex justify-content-evenly">
                 <button onClick={handleWishlist} className="btn btn-danger mt-3 ms-3">Add to Wishlist</button>
-                <button className="btn btn-success mt-3">Add to Cart</button>
+                <button onClick={handleCart} className="btn btn-success mt-3">Add to Cart</button>
               </div>
             </div>
             <div className="col-lg-6">

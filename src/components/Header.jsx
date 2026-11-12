@@ -14,6 +14,7 @@ import { serachProduct } from '../redux/silces/productSilce';
 
 function Header({ insideProduct }) {
   const userWishlist = useSelector(state=>state.WishlistReducer)
+  const userCart = useSelector(state=>state.CartReducer)
   const dispatch = useDispatch();
 
   return (
@@ -42,7 +43,7 @@ function Header({ insideProduct }) {
               <FontAwesomeIcon icon={faHeart} className='btn btn-danger ' />  <Badge bg="secondary">{userWishlist?.length}</Badge>
             </Link>
             <Link to={'/cart'} className="text-light text-decoration-none fw-bold ms-5">
-              <FontAwesomeIcon icon={faCartPlus} className='btn btn-success me-2' /> Cart <Badge pill bg="secondary">10</Badge>
+              <FontAwesomeIcon icon={faCartPlus} className='btn btn-success me-2' /> Cart <Badge pill bg="secondary">{userCart?.length}</Badge>
             </Link>
           </Nav>
         </Navbar.Collapse>
